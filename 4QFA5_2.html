@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contacts List</title>
+</head>
+<body>
+    <h2>Contacts List</h2>
+    <input type="text" id="contactName" placeholder="Enter name">
+    <button onclick="addContact()">Add</button>
+    <button onclick="removeContact()">Remove</button>
+    <br>
+    <span id="contacts"></span>
+
+    <script>
+        var contacts = [];
+
+        function updateContacts() {
+            var contactsList = "";
+            for (var x = 0; x < contacts.length; x++) {
+                contactsList += contacts[x] + " ";
+            }
+            document.getElementById("contacts").textContent = contactsList;
+        }
+
+        function addContact() {
+            var newName = document.getElementById("contactName").value.trim();
+            if (newName !== "") {
+                if (contacts.length === 7) {
+                    contacts.shift(); 
+                }
+                contacts.push(newName);
+                updateContacts();
+                document.getElementById("contactName").value = ""; 
+            } else {
+                alert("Please enter a name.");
+            }
+        }
+
+        function removeContact() {
+            if (contacts.length > 0) {
+                contacts.pop(); 
+                updateContacts();
+            }
+        }
+
+        updateContacts();
+    </script>
+</body>
+</html>
